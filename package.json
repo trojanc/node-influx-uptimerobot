@@ -22,7 +22,6 @@
   "homepage": "https://github.com/trojanc/node-influx-uptimerobot#readme",
   "dependencies": {
     "influx": "^4.2.0",
-    "moment": "^2.14.1",
-    "uptime-robot": "^1.1.0"
+    "moment": "^2.14.1"
   }
 }
