@@ -27,3 +27,9 @@ file to use.
 - **influx.username** Username for your influxdb server.
 - **influx.password** Password for your influxdb server.
 - **influx.database** Name of the influxdb database to use
+
+## Dashboard
+![Dashboard](./docs/dashboard.png)
+
+Import the contents of `grafana-uptimerobot-dashboard.json` to grafana and update
+your data sources as required to have them linked up.
