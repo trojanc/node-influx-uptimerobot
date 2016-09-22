@@ -1,6 +1,19 @@
 # node-influx-uptimerobot
 A tool to get statistics from uptimerobot and log it into influxdb
 
+## Prerequisites
+- NodeJS 5+
+- Uptimerobot account
+- InfluxDB
+
+## Installation
+```bash
+git clone https://github.com/trojanc/node-influx-uptimerobot.git
+cd node-influx-uptimerobot
+npm install
+node index.js
+```
+
 ## Configuration
 Place config in `config.json` or pass a parameter with the location of the config
 file to use.
