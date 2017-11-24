@@ -85,7 +85,12 @@ getMonitor((response)=>{
            var point = [];
            var timestamp = moment.unix(log.datetime - offsetSeconds);
            // The value
-           point[0] = {type : log.type, time: timestamp.valueOf(), reason: log.reason.reason+"", reason_detail: log.reason.reason_detail};
+           point[0] = {
+              type : log.type, 
+              time: timestamp.valueOf(), 
+              reason: log.reason.reason === undefined ? "" : log.reason.reason, 
+              reason_detail: log.reason.reason_detail === undefined ? "" : log.reason.reason_detail
+            };
 
            // The tags
            point[1] = {id : monitor.id, friendlyname: monitor.friendly_name};
