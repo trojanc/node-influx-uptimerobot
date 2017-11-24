@@ -88,8 +88,7 @@ getMonitor((response)=>{
            point[0] = {
               type : log.type, 
               time: timestamp.valueOf(), 
-              reason: log.reason.reason === undefined ? "" : log.reason.reason, 
-              reason_detail: log.reason.reason_detail === undefined ? "" : log.reason.reason_detail
+              reason: log.reason.reason === undefined ? "" : log.reason.reason
             };
 
            // The tags
