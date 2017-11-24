@@ -1,10 +1,10 @@
 # node-influx-uptimerobot
-A tool to get statistics from uptimerobot and log it into influxdb
+A tool to get statistics from [Uptime Robot](https://uptimerobot.com/) and log it into [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/)
 
 ## Prerequisites
 - NodeJS 5+
-- Uptimerobot account
-- InfluxDB
+- [Uptime Robot](https://uptimerobot.com/) account
+- [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/) instance
 
 ## Installation
 ```bash
@@ -16,7 +16,7 @@ node index.js
 
 You probably would want to run this on some sort of schedule like a cron entry.
 
-## Configuration
+## Application configuration
 Place config in `config.json` or pass a parameter with the location of the config
 file to use.
 
@@ -42,6 +42,13 @@ file to use.
 - **influx.username** Username for your influxdb server.
 - **influx.password** Password for your influxdb server.
 - **influx.database** Name of the influxdb database to use
+
+# Uptime Robot configuration
+To use this tool you need to get a API key from your Uptime Robot account.
+
+This can be retrieve from [My Settings](https://uptimerobot.com/dashboard#mySettings) by either creating a Main API Key, or a Monitor Specific API Key. 
+
+If you create a Main API Key you will be able to log all monitors, if you use a Monitor Specific API Key you will only be able to log that single monitor.
 
 ## Influx DB configuration
 You can create a new influxdb database using
