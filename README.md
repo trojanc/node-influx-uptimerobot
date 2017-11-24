@@ -50,7 +50,7 @@ CREATE DATABASE uptimerobot;
 ```
 
 ```
-USER uptimerobot;
+USE uptimerobot;
 ```
 
 When this script is ran it will create the tables if it does not exist. The tables it will populate are `logs` and `responseTime`. This can be seen by running
