@@ -48,7 +48,6 @@ function getMonitor(callback){
   req.end();
 }
 getMonitor((response)=>{
-    var offsetSeconds = Number(response.timezone) * 60; // Offset x seconds as from my account preferences
     response.monitors.forEach(function(monitor){
 
           /*********************************************************************
@@ -58,7 +57,7 @@ getMonitor((response)=>{
           var responseTimePoints = [];
           responseTimes.forEach(function(rt){
             var point = [];
-            var timestamp = moment.unix(rt.datetime - offsetSeconds);
+            var timestamp = moment.unix(rt.datetime);
             // The value
             point[0] = {value : rt.value, time: timestamp.valueOf()};
 
@@ -83,12 +82,13 @@ getMonitor((response)=>{
          var logTimePoints = [];
          logs.forEach(function(log){
            var point = [];
-           var timestamp = moment.unix(log.datetime - offsetSeconds);
+           var timestamp = moment.unix(log.datetime);
            // The value
            point[0] = {
               type : log.type, 
-              time: timestamp.valueOf(), 
-              reason: log.reason.reason === undefined ? "" : log.reason.reason
+              time: timestamp.valueOf(),
+              reason: (log.reason.code === undefined || log.reason.code == null) ? "" : log.reason.code,
+              reason_detail: (log.reason.detail === undefined || log.reason.detail == null) ? "" : log.reason.detail
             };
 
            // The tags
