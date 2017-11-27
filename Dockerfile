@@ -9,10 +9,8 @@ RUN \
 
 # Create app directory
 RUN mkdir -p /usr/src/node-influx-uptimerobot
-WORKDIR /usr/src
-
-# Install app
-RUN git clone https://github.com/Sillium/node-influx-uptimerobot
+COPY index.js /usr/src/node-influx-uptimerobot/
+COPY package.json /usr/src/node-influx-uptimerobot/
 WORKDIR /usr/src/node-influx-uptimerobot
 
 # Install app dependencies
