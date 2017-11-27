@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  node-influx-uptimerobot:
+    container_name: node-influx-uptimerobot
+    hostname: node-influx-uptimerobot
+    build:
+        context: .
+        dockerfile: Dockerfile
+    volumes:
+        - ./config.json:/usr/src/node-influx-uptimerobot/config.json:ro
