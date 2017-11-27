@@ -14,7 +14,14 @@ npm install
 node index.js
 ```
 
-You probably would want to run this on some sort of schedule like a cron entry.
+## Installation (Docker)
+```bash
+git clone https://github.com/trojanc/node-influx-uptimerobot.git
+cd node-influx-uptimerobot
+docker-compose up
+```
+
+You probably would want to run both of the installation options above on some sort of schedule like a cron entry.
 
 ## Application configuration
 Place config in `config.json` or pass a parameter with the location of the config
