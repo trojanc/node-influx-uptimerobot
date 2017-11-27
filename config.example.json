@@ -1,0 +1,13 @@
+{
+  "uptimerobot" : {
+    "apikey" : ""
+  },
+  "influx" : {
+    "host" : "",
+    "port" : 8086,
+    "protocol" : "http",
+    "username" : "",
+    "password" : "",
+    "database" : ""
+  }
+}
