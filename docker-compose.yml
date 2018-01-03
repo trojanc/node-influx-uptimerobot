@@ -9,3 +9,5 @@ services:
         dockerfile: Dockerfile
     volumes:
         - ./config.json:/usr/src/node-influx-uptimerobot/config.json:ro
+    env_file: .env
+

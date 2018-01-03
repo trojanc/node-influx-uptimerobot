@@ -27,11 +27,11 @@ function getMonitor(callback){
 		};
   var postData = {
       response_times: "1",
-      response_times_limit: "30",
+      response_times_limit: process.env.RESPONSE_TIMES_LIMIT,
 		  timezone: "1",
 		  format: "json",
       logs: "1",
-      logs_limit: "30",
+      logs_limit: process.env.LOGS_LIMIT,
 		  api_key: config.uptimerobot.apikey
   };
 
