@@ -1,6 +1,8 @@
 {
   "uptimerobot" : {
-    "apikey" : ""
+    "apikey" : "",
+    "logs_limit" : 100,
+    "response_times_limit" : 100
   },
   "influx" : {
     "host" : "",
