@@ -26,13 +26,14 @@ function getMonitor(callback){
 			  }
 		};
   var postData = {
-		  response_times : "1",
+      response_times: "1",
+      response_times_limit: "30",
 		  timezone: "1",
 		  format: "json",
-		  logs: "1",
+      logs: "1",
+      logs_limit: "30",
 		  api_key: config.uptimerobot.apikey
-  }
-
+  };
 
   var req = http.request(options, (response)=>{
     var objectString = "";
