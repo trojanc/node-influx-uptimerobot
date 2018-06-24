@@ -61,7 +61,7 @@ getMonitor((response) => {
     responseTimes.forEach(function(rt) {
       var point = [];
       var timestamp = moment.unix(rt.datetime);
-      
+
       // The value
       point[0] = {value : rt.value, time: timestamp.valueOf()};
 
@@ -70,10 +70,10 @@ getMonitor((response) => {
         id : monitor.id,
         friendlyname: monitor.friendly_name
       };
-      
+
       responseTimePoints.push(point);
     });
-    
+
     // Now lets write this server's points
     influxdb.writePoints("responseTime", responseTimePoints, function(err, response) {
       if (err) {
@@ -93,12 +93,12 @@ getMonitor((response) => {
     logs.forEach(function(log) {
       var point = [];
       var timestamp = moment.unix(log.datetime);
-      
+
       // The value
       point[0] = {
-        type : log.type, 
+        type : log.type,
         time: timestamp.valueOf(),
-        reason: (log.reason.code === undefined || log.reason.code == null) ? "" : log.reason.code,
+        reason: (log.reason.code === undefined || log.reason.code == null) ? "" : "" + log.reason.code,
         reason_detail: (log.reason.detail === undefined || log.reason.detail == null) ? "" : log.reason.detail
       };
 
