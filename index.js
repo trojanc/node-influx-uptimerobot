@@ -1,5 +1,5 @@
 'use strict';
-const influx = require('influx');
+const Influx = require('influx');
 const http = require('https');
 const moment = require('moment');
 const fs = require('fs');
@@ -62,7 +62,7 @@ if(process.env.INFLUX_DATABASE !== undefined) {
     config.influx.database = process.env.INFLUX_DATABASE;
 }
 
-const influxdb = influx(config.influx);
+const influxdb = new Influx.InfluxDB(config.influx);
 
 
 /**
@@ -122,30 +122,22 @@ function processMonitors(monitors){
         const responseTimes = monitor.response_times;
         const responseTimePoints = [];
         responseTimes.forEach(function(rt) {
-            const point = [];
             const timestamp = moment.unix(rt.datetime);
-
-            // The value
-            point[0] = {value : rt.value, time: timestamp.valueOf()};
-
-            // The tags
-            point[1] = {
-                id : monitor.id,
-                friendlyname: monitor.friendly_name
-            };
-
-            responseTimePoints.push(point);
+            responseTimePoints.push({
+                measurement : 'response_times',
+                tags : {
+                    id : monitor.id,
+                    friendlyname : monitor.friendly_name
+                },
+                fields: {
+                    value : rt.value,
+                    time : timestamp.valueOf()
+                },
+            });
         });
 
-        // Now lets write this server's points
-        influxdb.writePoints("responseTime", responseTimePoints, function(err, response) {
-            if (err) {
-                console.log(err);
-            }
-            if (response) {
-                console.log(response);
-            }
-        });
+        influxdb.writePoints(responseTimePoints)
+            .then(() => {}, error => console.warn(error));
 
         /*********************************************************************
          *  Monitor logs
@@ -154,44 +146,31 @@ function processMonitors(monitors){
         const logTimePoints = [];
 
         logs.forEach((log) => {
-            const point = [];
             const timestamp = moment.unix(log.datetime);
-
-            // The value
-            point[0] = {
-                type : log.type,
-                time: timestamp.valueOf(),
-                reason: (log.reason.code === undefined || log.reason.code == null) ? "" : "" + log.reason.code,
-                reason_detail: (log.reason.detail === undefined || log.reason.detail == null) ? "" : log.reason.detail
-            };
-
-            // The tags
-            point[1] = {
-                id : monitor.id,
-                friendlyname: monitor.friendly_name
-            };
-
-            logTimePoints.push(point);
+            logTimePoints.push({
+                measurement : "logs",
+                tags : {
+                    id : monitor.id,
+                    friendlyname : monitor.friendly_name
+                },
+                fields : {
+                    type : log.type,
+                    time : timestamp.valueOf(),
+                    reason : (log.reason.code === undefined || log.reason.code == null) ? "" : "" + log.reason.code,
+                    reason_detail : (log.reason.detail === undefined || log.reason.detail == null) ? "" : log.reason.detail
+                }
+            });
         });
 
-        logTimePoints.forEach((log) => {
-            console.log(JSON.stringify(log));
-        });
-
-        //Now lets write this server's points
-        influxdb.writePoints("logs", logTimePoints, (err, response) => {
-            if (err) {
-                console.log(err);
-            }
-            if (response) {
-                console.log(response);
-            }
-        });
+        influxdb.writePoints(logTimePoints)
+            .then(() => {}, error => console.warn(error));
     });
 }
 
 getMonitors()
     .then(processMonitors);
+
+// If there is an interval configured, keep running at the interval
 if(config.application.interval !== undefined && config.application.interval > 0){
     setInterval(() => {
         getMonitors()
