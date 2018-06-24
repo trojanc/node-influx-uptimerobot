@@ -1,6 +1,9 @@
 {
+  "application" : {
+    "interval" : 10
+  },
   "uptimerobot" : {
-    "apikey" : "",
+    "api_key" : "",
     "logs_limit" : 100,
     "response_times_limit" : 100
   },

@@ -43,23 +43,23 @@ if(process.env.UPTIMEROBOT_LOGS_LIMIT !== undefined) {
 if(process.env.UPTIMEROBOT_RESPONSE_TIMES_LIMIT !== undefined) {
     config.uptimerobot.response_times_limit = process.env.UPTIMEROBOT_RESPONSE_TIMES_LIMIT;
 }
-if(process.env.INFLUXDB_HOST !== undefined) {
-    config.influxdb.host = process.env.INFLUXDB_HOST;
+if(process.env.INFLUX_HOST !== undefined) {
+    config.influx.host = process.env.INFLUX_HOST;
 }
-if(process.env.INFLUXDB_PORT !== undefined) {
-    config.influxdb.port = process.env.INFLUXDB_PORT;
+if(process.env.INFLUX_PORT !== undefined) {
+    config.influx.port = process.env.INFLUX_PORT;
 }
-if(process.env.INFLUXDB_PROTOCOL !== undefined) {
-    config.influxdb.protocol = process.env.INFLUXDB_PROTOCOL;
+if(process.env.INFLUX_PROTOCOL !== undefined) {
+    config.influx.protocol = process.env.INFLUX_PROTOCOL;
 }
-if(process.env.INFLUXDB_USERNAME !== undefined) {
-    config.influxdb.username = process.env.INFLUXDB_USERNAME;
+if(process.env.INFLUX_USERNAME !== undefined) {
+    config.influx.username = process.env.INFLUX_USERNAME;
 }
-if(process.env.INFLUXDB_PASSWORD !== undefined) {
-    config.influxdb.password = process.env.INFLUXDB_PASSWORD;
+if(process.env.INFLUX_PASSWORD !== undefined) {
+    config.influx.password = process.env.INFLUX_PASSWORD;
 }
-if(process.env.INFLUXDB_DATABASE !== undefined) {
-    config.influxdb.database = process.env.INFLUXDB_DATABASE;
+if(process.env.INFLUX_DATABASE !== undefined) {
+    config.influx.database = process.env.INFLUX_DATABASE;
 }
 
 const influxdb = influx(config.influx);
