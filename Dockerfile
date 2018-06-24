@@ -1,11 +1,5 @@
-FROM node:7
+FROM mhart/alpine-node:10.5.0
 MAINTAINER	Henning Störk <stoerk+github@gmail.com>
-
-# Update & Upgrade
-RUN \
-    apt-get update && \
-    apt-get -y upgrade && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Create app directory
 RUN mkdir -p /usr/src/node-influx-uptimerobot
