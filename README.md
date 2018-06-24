@@ -67,6 +67,21 @@ CREATE DATABASE uptimerobot;
 USE uptimerobot;
 ```
 
+### Create user
+```
+CREATE USER "uptimerobot" WITH PASSWORD 'uptimerobot' WITH ALL PRIVILEGES
+```
+
+### Create grants for user
+```
+GRANT ALL ON "uptimerobot" TO "uptimerobot"
+```
+
+### See user grants
+```
+SHOW GRANTS FOR "uptimerobot"
+```
+
 When this script is ran it will create the tables if it does not exist. The tables it will populate are `logs` and `responseTime`. This can be seen by running
 ```
 SHOW MEASUREMENTS;
