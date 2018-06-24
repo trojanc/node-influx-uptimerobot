@@ -88,7 +88,7 @@ function getMonitors() {
             format: "json",
             logs: "1",
             logs_limit: config.uptimerobot.logs_limit,
-            api_key: config.uptimerobot.apikey
+            api_key: config.uptimerobot.api_key
         };
 
         const req = http.request(options, (response) => {
@@ -109,6 +109,11 @@ function getMonitors() {
 }
 
 function processMonitors(monitors){
+    if(monitors === undefined){
+        console.warn("Could not find any monitors");
+        return;
+    }
+
     monitors.forEach((monitor) => {
 
         /*********************************************************************

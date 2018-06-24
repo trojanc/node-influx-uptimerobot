@@ -7,6 +7,15 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
-    volumes:
-        - ./config.json:/usr/src/node-influx-uptimerobot/config.json:ro
+    environment:
+      APPLICATION_INTERVAL: 10
+      UPTIMEROBOT_API_KEY: uxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx
+      UPTIMEROBOT_LOGS_LIMIT: 100
+      UPTIMEROBOT_RESPONSE_TIMES_LIMIT: 100
+      INFLUX_HOST: influxdb
+      INFLUX_PORT: 8086
+      INFLUX_PROTOCOL: http
+      INFLUX_USERNAME: uptimerobot
+      INFLUX_PASSWORD: uptimerobot
+      INFLUX_DATABASE: uptimerobot
 
