@@ -30,7 +30,9 @@ file to use.
 ```json
 {
   "uptimerobot" : {
-    "apikey" : "uxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
+    "apikey" : "uxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
+    "logs_limit" : 100,
+    "response_times_limit" : 100
   },
   "influx" : {
     "host" : "localhost",
@@ -42,13 +44,26 @@ file to use.
   }
 }
 ```
-- **uptimerobot.apikey** Your uptimerobot API key.
+- **uptimerobot.api_key** Your uptimerobot API key.
+- **uptimerobot.logs_limit** Limit the number of logs to pull at a time.
+- **uptimerobot.response_times_limit** Limit the number of responses to pull at time.
 - **influx.host** Hostname or IP of your influxdb server.
 - **influx.port** Hostname or IP of your influxdb server.
 - **influx.protocol** protocol for your influxdb server.
 - **influx.username** Username for your influxdb server.
 - **influx.password** Password for your influxdb server.
 - **influx.database** Name of the influxdb database to use
+
+Each of the above configuration options can also be set using environment variables.
+- **UPTIMEROBOT_API_KEY** Your uptimerobot API key.
+- **UPTIMEROBOT_LOGS_LIMIT** Your uptimerobot API key.
+- **UPTIMEROBOT_RESPONSE_TIMES_LIMIT** Your uptimerobot API key.
+- **INFLUX_HOST** Hostname or IP of your influxdb server.
+- **INFLUX_PORT** Hostname or IP of your influxdb server.
+- **INFLUX_PROTOCOL** protocol for your influxdb server.
+- **INFLUX_USERNAME** Username for your influxdb server.
+- **INFLUX_PASSWORD** Password for your influxdb server.
+- **INFLUX_DATABASE** Name of the influxdb database to use
 
 # Uptime Robot configuration
 To use this tool you need to get a API key from your Uptime Robot account.

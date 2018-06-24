@@ -17,6 +17,10 @@ if (process.argv.length > 2) {
 if(fs.existsSync(configFile)){
     console.log("Loading config file: " + configFile);
     config = require(configFile);
+    if(config.uptimerobot && config.uptimerobot.apiKey !== undefined){
+        console.warn("uptimerobot.apiKey is deprecated, use uptimerobot.api_key instead");
+        config.uptimerobot.api_key = config.uptimerobot.apiKey;
+    }
 }
 else{
     console.log("Config file not found, depending on environment variables");
@@ -27,13 +31,13 @@ else{
 config.uptimerobot = config.uptimerobot || {};
 config.influx = config.influx || {};
 if(process.env.UPTIMEROBOT_API_KEY !== undefined) {
-    config.uptimerobot.apikey = process.env.UPTIMEROBOT_API_KEY;
+    config.uptimerobot.api_key = process.env.UPTIMEROBOT_API_KEY;
 }
 if(process.env.UPTIMEROBOT_LOGS_LIMIT !== undefined) {
     config.uptimerobot.logs_limit = process.env.UPTIMEROBOT_LOGS_LIMIT;
 }
 if(process.env.UPTIMEROBOT_RESPONSE_TIMES_LIMIT !== undefined) {
-    config.uptimerobot.apikey = process.env.UPTIMEROBOT_RESPONSE_TIMES_LIMIT;
+    config.uptimerobot.response_times_limit = process.env.UPTIMEROBOT_RESPONSE_TIMES_LIMIT;
 }
 if(process.env.INFLUXDB_HOST !== undefined) {
     config.influxdb.host = process.env.INFLUXDB_HOST;
