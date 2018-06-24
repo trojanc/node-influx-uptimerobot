@@ -28,8 +28,12 @@ else{
 
 // Read environment variables
 // Poor man's config setup
+config.application = config.application || {};
 config.uptimerobot = config.uptimerobot || {};
 config.influx = config.influx || {};
+if(process.env.APPLICATION_INTERVAL !== undefined) {
+    config.application.interval = process.env.APPLICATION_INTERVAL;
+}
 if(process.env.UPTIMEROBOT_API_KEY !== undefined) {
     config.uptimerobot.api_key = process.env.UPTIMEROBOT_API_KEY;
 }
@@ -179,8 +183,14 @@ function processMonitors(monitors){
             }
         });
     });
-
 }
 
 getMonitors()
     .then(processMonitors);
+if(config.application.interval !== undefined && config.application.interval > 0){
+    setInterval(() => {
+        getMonitors()
+            .then(processMonitors);
+    }, config.application.interval * 1000);
+
+}

@@ -21,14 +21,15 @@ cd node-influx-uptimerobot
 docker-compose up
 ```
 
-You probably would want to run both of the installation options above on some sort of schedule like a cron entry.
-
 ## Application configuration
 Place config in `config.json` or pass a parameter with the location of the config
 file to use.
 
 ```json
 {
+  "application" : {
+    "interval" : 10
+  },
   "uptimerobot" : {
     "apikey" : "uxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
     "logs_limit" : 100,
@@ -44,6 +45,7 @@ file to use.
   }
 }
 ```
+- **application.interval** Interval (seconds) at which to pull data. If not specified it will only do a pull once.
 - **uptimerobot.api_key** Your uptimerobot API key.
 - **uptimerobot.logs_limit** Limit the number of logs to pull at a time.
 - **uptimerobot.response_times_limit** Limit the number of responses to pull at time.
@@ -52,9 +54,11 @@ file to use.
 - **influx.protocol** protocol for your influxdb server.
 - **influx.username** Username for your influxdb server.
 - **influx.password** Password for your influxdb server.
-- **influx.database** Name of the influxdb database to use
+- **influx.database** Name of the influxdb database to use.
 
-Each of the above configuration options can also be set using environment variables.
+Each of the above configuration options can also be set using environment variables. 
+Environment variables override any configuration set in a config file.
+- **APPLICATION_INTERVAL** Interval (seconds) at which to pull data. If not specified it will only do a pull once.
 - **UPTIMEROBOT_API_KEY** Your uptimerobot API key.
 - **UPTIMEROBOT_LOGS_LIMIT** Your uptimerobot API key.
 - **UPTIMEROBOT_RESPONSE_TIMES_LIMIT** Your uptimerobot API key.
