@@ -6,20 +6,32 @@ A tool to get statistics from [Uptime Robot](https://uptimerobot.com/) and log i
 - [Uptime Robot](https://uptimerobot.com/) account
 - [InfluxDB](https://www.influxdata.com/time-series-platform/influxdb/) instance
 
-## Installation
+## Installation (NodeJS)
 ```bash
 git clone https://github.com/trojanc/node-influx-uptimerobot.git
 cd node-influx-uptimerobot
 npm install
 node index.js
 ```
+Remember to create a configuration file, or have environment variables in place for your configuration.
 
 ## Installation (Docker)
 ```bash
 git clone https://github.com/trojanc/node-influx-uptimerobot.git
 cd node-influx-uptimerobot
+docker build -t trojanc/node-influx-uptimerobot:v0.0.1 .
+docker run --name node-influx-uptimerobot trojanc/node-influx-uptimerobot:v0.0.1
+```
+To really make it run you'll either have to pass in a number of environment variables (`-e`) with your configuration
+ or map a config file via a docker volume (`-v ${PWD}/config.json:/usr/src/node-influx-uptimerobot/config.json`)
+
+## Installation (Docker Compose)
+```bash
+git clone https://github.com/trojanc/node-influx-uptimerobot.git
+cd node-influx-uptimerobot
 docker-compose up
 ```
+Make sure to edit the `docker-compose.yml` file and set your configuration.
 
 ## Application configuration
 Place config in `config.json` or pass a parameter with the location of the config
