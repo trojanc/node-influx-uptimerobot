@@ -125,18 +125,18 @@ function processMonitors(monitors){
             const timestamp = moment.unix(rt.datetime);
             responseTimePoints.push({
                 measurement : 'response_times',
+                timestamp : timestamp.valueOf(),
                 tags : {
                     id : monitor.id,
                     friendlyname : monitor.friendly_name
                 },
                 fields: {
-                    value : rt.value,
-                    time : timestamp.valueOf()
+                    value : rt.value
                 },
             });
         });
 
-        influxdb.writePoints(responseTimePoints)
+        influxdb.writePoints(responseTimePoints, { precision: 'ms' })
             .then(() => {}, error => console.warn(error));
 
         /*********************************************************************
@@ -149,20 +149,20 @@ function processMonitors(monitors){
             const timestamp = moment.unix(log.datetime);
             logTimePoints.push({
                 measurement : "logs",
+                timestamp : timestamp.valueOf(),
                 tags : {
                     id : monitor.id,
                     friendlyname : monitor.friendly_name
                 },
                 fields : {
                     type : log.type,
-                    time : timestamp.valueOf(),
                     reason : (log.reason.code === undefined || log.reason.code == null) ? "" : "" + log.reason.code,
                     reason_detail : (log.reason.detail === undefined || log.reason.detail == null) ? "" : log.reason.detail
                 }
             });
         });
 
-        influxdb.writePoints(logTimePoints)
+        influxdb.writePoints(logTimePoints, { precision: 'ms' })
             .then(() => {}, error => console.warn(error));
     });
 }
