@@ -23,7 +23,7 @@ docker build -t trojanc/node-influx-uptimerobot:v0.0.1 .
 docker run --name node-influx-uptimerobot trojanc/node-influx-uptimerobot:v0.0.1
 ```
 To really make it run you'll either have to pass in a number of environment variables (`-e`) with your configuration
- or map a config file via a docker volume (`-v ${PWD}/config.json:/usr/src/node-influx-uptimerobot/config.json`)
+ or map a config file via a docker volume (e.g. `-v ${PWD}/config.json:/usr/src/node-influx-uptimerobot/config.json`)
 
 ## Installation (Docker Compose)
 ```bash
@@ -43,7 +43,7 @@ file to use.
     "interval" : 10
   },
   "uptimerobot" : {
-    "apikey" : "uxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
+    "api_key" : "uxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx",
     "logs_limit" : 100,
     "response_times_limit" : 100
   },
