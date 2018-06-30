@@ -46,28 +46,28 @@ file to use.
 }
 ```
 - **application.interval** Interval (seconds) at which to pull data. If not specified it will only do a pull once.
-- **uptimerobot.api_key** Your uptimerobot API key.
+- **uptimerobot.api_key** Your Uptime Robot API key.
 - **uptimerobot.logs_limit** Limit the number of logs to pull at a time.
 - **uptimerobot.response_times_limit** Limit the number of responses to pull at time.
-- **influx.host** Hostname or IP of your influxdb server.
-- **influx.port** Hostname or IP of your influxdb server.
-- **influx.protocol** protocol for your influxdb server.
-- **influx.username** Username for your influxdb server.
-- **influx.password** Password for your influxdb server.
-- **influx.database** Name of the influxdb database to use.
+- **influx.host** Hostname or IP of your InfluxDB server.
+- **influx.port** Hostname or IP of your InfluxDB server.
+- **influx.protocol** protocol for your InfluxDB server.
+- **influx.username** Username for your InfluxDB server.
+- **influx.password** Password for your InfluxDB server.
+- **influx.database** Name of the InfluxDB database to use.
 
 Each of the above configuration options can also be set using environment variables. 
 Environment variables override any configuration set in a config file.
 - **APPLICATION_INTERVAL** Interval (seconds) at which to pull data. If not specified it will only do a pull once.
-- **UPTIMEROBOT_API_KEY** Your uptimerobot API key.
-- **UPTIMEROBOT_LOGS_LIMIT** Your uptimerobot API key.
-- **UPTIMEROBOT_RESPONSE_TIMES_LIMIT** Your uptimerobot API key.
-- **INFLUX_HOST** Hostname or IP of your influxdb server.
-- **INFLUX_PORT** Hostname or IP of your influxdb server.
-- **INFLUX_PROTOCOL** protocol for your influxdb server.
-- **INFLUX_USERNAME** Username for your influxdb server.
-- **INFLUX_PASSWORD** Password for your influxdb server.
-- **INFLUX_DATABASE** Name of the influxdb database to use
+- **UPTIMEROBOT_API_KEY** Your Uptime Robot API key.
+- **UPTIMEROBOT_LOGS_LIMIT** Limit the number of logs to pull at a time.
+- **UPTIMEROBOT_RESPONSE_TIMES_LIMIT** Your Uptime Robot API key.
+- **INFLUX_HOST** Hostname or IP of your InfluxDB server.
+- **INFLUX_PORT** Hostname or IP of your InfluxDB server.
+- **INFLUX_PROTOCOL** protocol for your InfluxDB server.
+- **INFLUX_USERNAME** Username for your InfluxDB server.
+- **INFLUX_PASSWORD** Password for your InfluxDB server.
+- **INFLUX_DATABASE** Name of the InfluxDB database to use
 
 # Uptime Robot configuration
 To use this tool you need to get a API key from your Uptime Robot account.
@@ -77,7 +77,7 @@ This can be retrieve from [My Settings](https://uptimerobot.com/dashboard#mySett
 If you create a Main API Key you will be able to log all monitors, if you use a Monitor Specific API Key you will only be able to log that single monitor.
 
 ## Influx DB configuration
-You can create a new influxdb database using
+You can create a new InfluxDB database using
 ```
 CREATE DATABASE uptimerobot;
 ```
@@ -109,19 +109,20 @@ SHOW MEASUREMENTS;
 name: measurements
 ------------------
 logs
-responseTime
+response_times
 
 ```
 
 ### Logs
-The `logs` table contains any messages that are logged by uptimerobot for a monitor.
+The `logs` table contains any messages that are logged by Uptime Robot for a monitor.
 - **friendlyname** Friendly name for the monitor.
 - **id** ID of the monitor.
 - **reason** The reason of the downtime (if exists).
+- **reason_detail** Additional information about the reason (if exists).
 - **type** Type of log (1 - down, 2 - up, 99 - paused, 98 - started)
 
 ### Response Time
-The `responseTime` table will contain entries of the response times for each monitor.
+The `response_time` table will contain entries of the response times for each monitor.
 - **friendlyname** Friendly name for the monitor.
 - **id** ID of the monitor.
 - **value** The response time of the monitor.
